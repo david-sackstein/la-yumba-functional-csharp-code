@@ -15,6 +15,20 @@ namespace LaYumba.Functional
 
    public struct Option<T> : IEquatable<Option.None>, IEquatable<Option<T>>
    {
+       public override bool Equals(object obj)
+       {
+           if (ReferenceEquals(null, obj)) return false;
+           return obj is Option<T> && Equals((Option<T>) obj);
+       }
+
+       public override int GetHashCode()
+       {
+           unchecked
+           {
+               return (EqualityComparer<T>.Default.GetHashCode(value) * 397) ^ isSome.GetHashCode();
+           }
+       }
+
       readonly T value;
       readonly bool isSome;
       bool isNone => !isSome;

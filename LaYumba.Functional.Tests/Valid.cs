@@ -5,7 +5,7 @@ using static LaYumba.Functional.F;
 
 namespace LaYumba.Functional.Tests
 {
-   class Valid_Test
+   public class Valid_Test
    {
       Validation<int> Invalid(string m = "Some error") => new Error(m);
 
@@ -29,11 +29,12 @@ namespace LaYumba.Functional.Tests
 
       [Fact]
       public void ItAccumulatesErrors() => Assert.Equal(
+         expected: 2,
          actual: Valid(add)
             .Apply(parseInt("y"))
             .Apply(parseInt("x"))
-            .Errors.Count(),
-         expected: 2
+            .Errors.Count()
+         
       );
 
       [Fact]
@@ -46,11 +47,11 @@ namespace LaYumba.Functional.Tests
 
       [Fact]
       public void TraversableA_UnhappyPath() => Assert.Equal(
-         actual: List("1", "2", "rubbish", "4", "more rubbish")
+           expected: 2,
+           actual: List("1", "2", "rubbish", "4", "more rubbish")
             .Traverse(parseInt)
             .Map(list => list.Sum())
-            .Errors.Count(),
-         expected: 2
+            .Errors.Count()
       );
 
       // standard applicative tests

@@ -8,7 +8,17 @@ namespace LaYumba.Functional.Data.BinaryTree
 
       public bool Equals(Tree<T> other) => this.ToString() == other.ToString(); // hack
       public override bool Equals(object obj) => Equals((Tree<T>)obj);
-   }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+    }
 
    internal class Branch<T> : Tree<T>
    {

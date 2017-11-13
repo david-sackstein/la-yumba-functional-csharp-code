@@ -71,7 +71,17 @@ namespace LaYumba.Functional
             : $"Invalid([{string.Join(", ", Errors)}])";
 
       public override bool Equals(object obj) => this.ToString() == obj.ToString(); // hack
-   }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1141250687;
+            hashCode = hashCode * -1521134295 + base.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<IEnumerable<Error>>.Default.GetHashCode(Errors);
+            hashCode = hashCode * -1521134295 + EqualityComparer<T>.Default.GetHashCode(Value);
+            hashCode = hashCode * -1521134295 + IsValid.GetHashCode();
+            return hashCode;
+        }
+    }
 
    public static class Validation
    {

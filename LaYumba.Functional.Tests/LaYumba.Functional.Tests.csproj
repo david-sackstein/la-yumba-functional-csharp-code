@@ -1,20 +1,79 @@
-﻿<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E0C821A1-F741-4F0A-ACC1-71C92EDB4D46}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LaYumba.Functional.Tests</RootNamespace>
+    <AssemblyName>LaYumba.Functional.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" />
-    <EmbeddedResource Include="**\*.resx" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NETStandard.Library">
-      <Version>1.6</Version>
+    <Compile Include="Assertions.cs" />
+    <Compile Include="BinaryTreeTest.cs" />
+    <Compile Include="Coyo.cs" />
+    <Compile Include="FTest.cs" />
+    <Compile Include="FuncExtTest.cs" />
+    <Compile Include="Immutable.cs" />
+    <Compile Include="Option\ApplicativeLaws.cs" />
+    <Compile Include="Option\FunctorLaws.cs" />
+    <Compile Include="Option\MonadLaws.cs" />
+    <Compile Include="Option\OptionTest.cs" />
+    <Compile Include="IEnumerable\FunctorLaws.cs" />
+    <Compile Include="IEnumerable\MonadLaws.cs" />
+    <Compile Include="Pattern.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TestUtils.cs" />
+    <Compile Include="Try.cs" />
+    <Compile Include="Unit.cs" />
+    <Compile Include="Valid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FsCheck.Xunit">
+      <Version>2.6.2</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Sdk">
-      <Version>1.0.0-alpha-20161104-2</Version>
-      <PrivateAssets>All</PrivateAssets>
+    <PackageReference Include="System.Reactive">
+      <Version>3.1.1</Version>
     </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.3.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LaYumba.Functional.Data\LaYumba.Functional.Data.csproj">
+      <Project>{8278D872-3937-442D-9336-9E86199F668D}</Project>
+      <Name>LaYumba.Functional.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LaYumba.Functional\LaYumba.Functional.csproj">
+      <Project>{EF04DBB4-D78E-4FCA-B60B-566DD7A17E07}</Project>
+      <Name>LaYumba.Functional</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

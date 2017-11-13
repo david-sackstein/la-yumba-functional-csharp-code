@@ -16,7 +16,12 @@ namespace LaYumba.Functional.Data.Bst
 
       public bool Equals(Tree<T> other) => this.ToString() == other.ToString(); // hack
       public override bool Equals(object obj) => Equals((Tree<T>)obj);
-   }
+
+        public override int GetHashCode()
+        {
+            return -1574110226 + IsEmpty.GetHashCode();
+        }
+    }
 
    public class Empty<T> : Tree<T> where T : IComparable<T>
    {
