@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Immutable;
 using Boc.Domain;
+using LaYumba.Functional;
 
 namespace Examples.Chapter10.Data.Account.Immutable
 {

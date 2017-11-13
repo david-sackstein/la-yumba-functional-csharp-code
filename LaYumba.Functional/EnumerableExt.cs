@@ -15,7 +15,7 @@ namespace LaYumba.Functional
       public static IEnumerable<T> Append<T>(this IEnumerable<T> source
          , params T[] ts) => source.Concat(ts);
 
-      static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, T val)
+      public static IEnumerable<T> Prepend<T>(this IEnumerable<T> source, T val)
       {
          yield return val;
          foreach (T t in source) yield return t;
